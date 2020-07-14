@@ -1,0 +1,27 @@
+name:   <input type="text" name="shopping_order_name" value="{{ obj.name}}"></br>
+email:  <input type="text" name="shopping_order_email" value="{{ obj.email}}"></br>
+ <input type="hidden" name="shopping_order_PayType" value="2"></br>
+amount: <input type="text"  name="shopping_order_amount" value="{{ obj.amount}}"></br>
+
+</br>Validated</br>
+<form action="{% url 'payment' %}" method="POST">
+    <script
+        src="https://checkout.razorpay.com/v1/checkout.js"
+        data-key="rzp_test_sSbZ8fWtGjuXPL"
+        data-Merchant-id ="FDxkuvOm9vNUkFChange "
+        data-amount="{% widthratio obj.amount 1 100 %}"
+        data-name="PAYMENT TEST"
+        data-description="Purchase Description"
+        data-image=""
+        data-netbanking="true"
+        data-description="NO FIELD"
+        data-prefill.name="{{obj.name}}"
+        data-prefill.PayType="2"
+        data-prefill.email="{{obj.email}}"
+        data-prefill.contact="{{obj.mobile}}"
+        data-notes.shopping_order_id="{{obj.uuid}}">
+    </script>
+<input type="hidden" name="payment_order_id" value="{{obj.uuid}}"></br>
+<input type="hidden"  name="payment_order_amount" value="{{ obj.amount}}"></br>
+
+</form>
